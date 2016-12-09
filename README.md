@@ -29,7 +29,7 @@ Originally forked from [Xylose](https://github.com/alongubkin/xylose) by *(@alon
 
 ### Screenshot
 
-![screenshot](https://github.com/KeltoisRage/tree/devel/assets/screenshot.png)
+![screenshot](https://github.com/KeltoisRage/kr-game-client/tree/devel/assets/screenshot.png)
 
 
 ### TODO
