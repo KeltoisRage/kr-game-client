@@ -29,7 +29,7 @@ Originally forked from [Xylose](https://github.com/alongubkin/xylose) by *(@alon
 
 ### Screenshot
 
-![screenshot](https://dl.dropboxusercontent.com/u/16304603/xylose.png)
+![screenshot](https://github.com/KeltoisRage/tree/devel/assets/screenshot.png)
 
 
 ### TODO
@@ -46,4 +46,11 @@ Originally forked from [Xylose](https://github.com/alongubkin/xylose) by *(@alon
 ### In Progress ...
 
 * *Socket.IO* directory "server.old" is replaced by *Websocket(s)* on directory "proxy", this makes a connection to a MUD server for require characters and world data.
+
+
+### Documentation and Examples
+
+* [3D WebSockets](https://davidwalsh.name/3d-websockets)
+
+* [Three.js Examples](https://threejs.org/examples)
 
