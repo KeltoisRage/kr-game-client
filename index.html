@@ -1,88 +1,152 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>Xylose</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<style>
-			html, body {
-				width: 100%;
-				height: 100%;
-			}
+<head>
+	<title>kallaikia</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<style>
+	html, body {
+		width: 100%;
+		height: 100%;
+	}
 
-			body {
-				background-color: #ffffff;
-				margin: 0;
-				overflow: hidden;
-				font-family: arial;
-			}
+	body {
+		background-color: #ffffff;
+		margin: 0;
+		overflow: hidden;
+		font-family: arial;
+	}
 
-			#blocker {
+	#blocker {
 
-				position: absolute;
+		position: absolute;
 
-				width: 100%;
-				height: 100%;
+		width: 100%;
+		height: 100%;
 
-				background-color: rgba(0,0,0,0.5);
+		background-color: rgba(0,0,0,0.5);
 
-			}
+	}
 
-			#instructions {
+	#instructions {
 
-				width: 100%;
-				height: 100%;
+		width: 100%;
+		height: 100%;
 
-				display: -webkit-box;
-				display: -moz-box;
-				display: box;
+		display: -webkit-box;
+		display: -moz-box;
+		display: box;
 
-				-webkit-box-orient: horizontal;
-				-moz-box-orient: horizontal;
-				box-orient: horizontal;
+		-webkit-box-orient: horizontal;
+		-moz-box-orient: horizontal;
+		box-orient: horizontal;
 
-				-webkit-box-pack: center;
-				-moz-box-pack: center;
-				box-pack: center;
+		-webkit-box-pack: center;
+		-moz-box-pack: center;
+		box-pack: center;
 
-				-webkit-box-align: center;
-				-moz-box-align: center;
-				box-align: center;
+		-webkit-box-align: center;
+		-moz-box-align: center;
+		box-align: center;
 
-				color: #ffffff;
-				text-align: center;
+		color: #ffffff;
+		text-align: center;
 
-				cursor: pointer;
+		cursor: pointer;
 
-			}
+	}
 
-			#stats { position: absolute; top:0; left: 0 }
-			#stats #fps { background: transparent !important }
-			#stats #fps #fpsText { color: #aaa !important }
-			#stats #fps #fpsGraph { display: none }
-		</style>
-	</head>
+	#stats { position: absolute; top:0; left: 0 }
+	#stats #fps { background: transparent !important }
+	#stats #fps #fpsText { color: #aaa !important }
+	#stats #fps #fpsGraph { display: none }
+	</style>
 
-	<body>
-		<script src="js/socket.io.js"></script>
-		<script src="js/three.js"></script>
-		<script src="js/three.modules.js"></script>
-		<script src="js/stats.js"></script>
-		
-		<script src="js/xylose.js"></script>	
-		
-		<script src="js/xylose/Input.js"></script>
-		<script src="js/xylose/Component.js"></script>
-		
-		<script src="js/xylose/NetworkManager.js"></script>
-		
-		<script src="js/xylose/Game.js"></script>
-		
-		<script src="js/xylose/Camera.js"></script>		
-		<script src="js/xylose/Ground.js"></script>	
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-		<script src="js/xylose/Entity.js"></script>		
-		<script src="js/xylose/AnimatedEntity.js"></script>		
-		<script src="js/xylose/Character.js"></script>
-	</body>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+	<meta name="apple-mobile-web-app-capable" content="yes">
+
+	<link rel="stylesheet" href="css/font-awesome.min.css" type="text/css" />
+	<link rel="stylesheet" href="css/jquery-ui.min.css" type="text/css" />
+	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+	<link rel="stylesheet" href="css/jcarousel.basic.css" type="text/css" />
+	<link rel="stylesheet" href="css/app.css" type="text/css" />
+
+	<link rel="stylesheet" href="css/playnow.css"/>
+
+	<script type="text/javascript" src="js/jquery.min.js"></script>
+	<script type="text/javascript" src="js/jquery-noconflict.js"></script>
+	<script type="text/javascript" src="js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.js"></script>
+	<script type="text/javascript" src="js/jquery.jcarousel.min.js"></script>
+	<script type="text/javascript" src="js/jquery.nicescroll.js"></script>
+	<script type="text/javascript" src="js/jquery.dateFormat-1.0.js"></script>
+
+</head>
+
+<body id="page" class="page  noblog  top-b-line  main-line  bottom-a-line  bottom-b-line  system-none" data-config='{"twitter":1,"plusone":1,"facebook":1}'>
+
+	<script src="js/FileSaver.js"></script>
+	<script src="js/d3.v3.min.js"></script>
+	<script src="js/jquery.animateSprite.min.js"></script>
+	<script src="js/inflate.js"></script>
+	<script src="js/zlib-inflate.js"></script>
+
+	<script>
+	var j = jQuery;
+	</script>
+
+	<script type="text/javascript"  style="display:none">
+	jQuery.noConflict();
+
+	j('body').addClass('app');
+
+	</script>
+
+	<script src="js/three.js"></script>
+	<!-- <script src="js/three.modules.js"></script> -->
+	<script src="js/renderers/Projector.js"></script>
+	<script src="js/stats.js"></script>
+
+	<script src="js/kallaikia.js"></script>
+
+	<!-- app -->
+	<script src="js/kallaikia/Util.js"></script>
+	<script src="js/kallaikia/Config.js"></script>
+	<script src="js/kallaikia/Event.js"></script>
+	<script src="js/kallaikia/Window.js"></script>
+	<script src="js/kallaikia/Modal.js"></script>
+	<script src="js/kallaikia/ModalInput.js"></script>
+	<script src="js/kallaikia/MacroPane.js"></script>
+	<script src="js/kallaikia/TriggerHappy.js"></script>
+	<script src="js/kallaikia/ControlPanel.js"></script>
+	<script src="js/kallaikia/Socket.js"></script>
+	<script src="js/kallaikia/Colorize.js"></script>
+	<script src="js/kallaikia/ScrollView.js"></script>
+	<script src="js/kallaikia/ChatterBox.js"></script>
+	<script src="js/kallaikia/MXP.js"></script>
+	<script src="js/kallaikia/iFrame.js"></script>
+	<script src="js/kallaikia/LoginPrompt.js"></script>
+	<script src="js/kallaikia/JujuMapper.js"></script>
+	<script src="js/kallaikia/MistyBars.js"></script>
+	<script src="js/kallaikia/GroupTab.js"></script>
+	<script src="js/kallaikia/Toolbar.js"></script>
+	<script src="js/kallaikia/HavocMapper.js"></script>
+	<script src="js/kallaikia/HavocCore.js"></script>
+	<script src="js/kallaikia/Core.js"></script>
+
+	<script src="js/kallaikia/Input.js"></script>
+	<script src="js/kallaikia/Component.js"></script>
+	<script src="js/kallaikia/NetworkManager.js"></script>
+	<script src="js/kallaikia/Game.js"></script>
+	<script src="js/kallaikia/Entity.js"></script>
+	<script src="js/kallaikia/AnimatedEntity.js"></script>
+	<script src="js/kallaikia/Character.js"></script>
+	<script src="js/kallaikia/Camera.js"></script>
+	<script src="js/kallaikia/Ground.js"></script>
+
+</body>
 </html>

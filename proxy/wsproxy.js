@@ -412,46 +412,53 @@ srv = {
 				s.utf8_negotiated = s.mccp_negotiated = s.mxp_negotiated = s.gmcp_negotiated = 1;
 				s.new_negotiated = s.new_handshake = s.sga_negotiated = s.echo_negotiated = s.naws_negotiated = 1;
 			}, 12000);
-		
-      login(function(username, password, position) {
+
+			srv.chatUpdate();
+		});
+
+    s.ts.on("LoginPrompt", (function(username, password, position) {
           var playerIndex = players.length;
           players[playerIndex] = { index: playerIndex, name: username, position: new THREE.Vector3(0, 36, 0) };
       
           s.index = playerIndex;
           players[playerIndex].ready = true;
           s.emit('spawn_myself', players[playerIndex]);
-      });  
+    }));
 
-			srv.chatUpdate();
-		})
-		.on("data", function (data) {
+		s.ts.on("data", function (data) {
 			srv.sendClient(s, data);
-		})
-    .on('walk', function (target) {
+		});
+
+    s.ts.on('walk', function (target) {
          var player = players[s.index];
          if (player && player.ready) {
            player.walkTo = new THREE.Vector3(target.x, target.y, target.z);
          }
-    })
-		.on("timeout", function () { 
+    });
+
+		s.ts.on("timeout", function () { 
 			srv.log('telnet socket timeout: '+s);
 			s.sendUTF(new Buffer("Timeout: server port is down.\r\n").toString('base64'));
 			srv.closeSocket(s);
-		})
-		.on("close", function () { 
+		});
+
+		s.ts.on("close", function () { 
 			srv.log('telnet socket closed: '+s.remoteAddress);
 			srv.closeSocket(s);
 			srv.chatUpdate();
 			//srv.initT(s);
-		})
-    .on('disconnect', function () {
+		});
+
+    s.ts.on('disconnect', function () {
          delete players[s.index];
-    })
-		.on("error", function (err) { 
+    });
+
+		s.ts.on("error", function (err) { 
 			s.sendUTF(new Buffer(err).toString('base64'));
 			srv.closeSocket(s);
 		});
-	},
+
+    },
 	
 	closeSocket: function(s) {
 		
