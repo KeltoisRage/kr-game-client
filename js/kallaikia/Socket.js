@@ -66,7 +66,7 @@ Kallaikia.Socket = function (o) {
 		setInterval(function() {
 			ws.send('{ "ping": 1 }');
 		}, 10000); */
-
+		console.log("soscket opened");
 	};
 
 	var onClose = function(evt) {
@@ -446,6 +446,7 @@ Kallaikia.Socket = function (o) {
 	};
 
 	var connect = function() {
+		//var e= new Error(); console.log( e.stack )
 		log("Socket: Setting WebSocket Kallaikia Proxy to " + proxy);
 		log('Socket: Connecting to Kallaikia server ...');
 		ws = new WebSocket(proxy);
@@ -468,6 +469,7 @@ Kallaikia.Socket = function (o) {
 
 		buff = '';
 		Config.mxp.disable();
+		log("reconnecting now");
 
 		connect();
 	};

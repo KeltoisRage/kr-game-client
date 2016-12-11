@@ -1,17 +1,17 @@
 var Event = {
-	
+
 	q: {
 		'socket_open': [],
-		'socket_data': [],	
+		'socket_data': [],
 		'socket_before_close': [],
 		'socket_close': [],
 		'chat_open': [],
-		'chat_data': [],		
+		'chat_data': [],
 		'chat_before_close': [],
 		'chat_close': [],
-		'telnet_open': [],	
-		'telnet_before_close': [],	
-		'telnet_close': [],	
+		'telnet_open': [],
+		'telnet_before_close': [],
+		'telnet_close': [],
 		'before_process': [],
 		'after_protocols': [],
 		'before_html': [],
@@ -40,11 +40,11 @@ var Event = {
 		'window_hide': [],
 		'window_show': []
 	},
-	
+
 	fire: function(event, data, caller) {
-		
+
 		if (!this.q[event]) {
-			log('Event.js: No such event to fire: ' + event);
+			console.log('Event.js: No such event to fire: ' + event);
 			return 0;
 		}
 		//else
@@ -52,22 +52,22 @@ var Event = {
 
 		for (var i = 0; i < this.q[event].length; i++)
 			data = this.q[event][i](data, caller);
-		
+
 		return data;
 	},
-	
+
 	listen: function(event, cb) {
 		if (!this.q[event]) {
-			log('Event.js: No such event to subscribe to: ' + event);
+			console.log('Event.js: No such event to subscribe to: ' + event);
 			return 0;
 		}
 		this.q[event].push(cb);
 		return 1;
 	},
-	
+
 	drop: function(event, cb) {
 		if (!this.q[event]) {
-			log('Event.js: No such event to drop from: ' + event);
+			console.log('Event.js: No such event to drop from: ' + event);
 			return;
 		}
 		for (var i = 0; i < this.q[event].length; i++)
@@ -77,16 +77,16 @@ var Event = {
 			}
 		return 0;
 	},
-	
+
 	create: function(event) {
 		if (this.q[event]) {
-			log('Event.js: This event already exists and will not be created: ' + event);
+			console.log('Event.js: This event already exists and will not be created: ' + event);
 			return;
 		}
 		this.q[event] = [];
 		log('Event.js: Event created: ' + event);
 	},
-	
+
 	destroy: function(event) {
 		if (!this.q[event]) {
 			log('Event.js: This event does not exist and will not be destroyed: ' + event);

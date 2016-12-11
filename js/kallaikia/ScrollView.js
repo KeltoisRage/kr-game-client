@@ -1,4 +1,4 @@
-var ScrollView = function(o) {
+Kallaikia.ScrollView = function(o) {
 
 	var self = this, ws = {}, sesslog = '', freeze, mobile = Config.device.mobile, touch = Config.device.touch, multi;
 	var cmds = [], cmdi = 0, echo = 1;
@@ -23,7 +23,7 @@ var ScrollView = function(o) {
 	o.local = (Config.getSetting('echo') == null || Config.getSetting('echo') == 1);
 	o.echo = o.echo||1;
 
-	var win = new Window({
+	var win = new Kallaikia.Window({
 		id: id,
 		css: o.css,
 		'class': 'scroll-view nofade',
@@ -390,12 +390,13 @@ var ScrollView = function(o) {
 		scroll: scroll,
 		win: win
 	}
-
+  //console.log("creating new websocket");
 	var ws = new Kallaikia.Socket({
 		host: param('host'),
 		port: param('port'),
 		// proxy: Config.proxy,
 		out: self
+		,onOpen: function(){ console.log("ws opened"); }
 	});
 
 	if (window.user && user.id) {
@@ -409,7 +410,7 @@ var ScrollView = function(o) {
 			self.echo('Activating macros.');
 		}
 
-		Config.TriggerHappy = new TriggerHappy({
+		Config.TriggerHappy = new Kallaikia.TriggerHappy({
 			socket: ws
 		});
 
