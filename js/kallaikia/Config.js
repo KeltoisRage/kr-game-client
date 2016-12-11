@@ -32,6 +32,8 @@ var Config = {
 
 	kong: param('kong'),
 
+	// collapse: [ "#scroll-view" ],
+
 	collapse: [ ],
 
 	dev: window.location.search.has('dev') || 1,

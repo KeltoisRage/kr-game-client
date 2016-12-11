@@ -119,20 +119,21 @@ Kallaikia.LoginPrompt = function(o) {
         user = j(id+' .user').val();
         pass = j(id+' .pass').val();
 
-		if (pastuser)
+
+		if (pastuser) {
 			Config.socket.write(pass);
-		else
-		if (o.gmcp) {
-			if (pass)
-				Config.socket.write(stringify({
-					username: user,
-					password: pass
-				}));
-			else
+		} else {
+			if (o.gmcp) {
+				if (pass) {
+					Config.socket.write(user);
+					Config.socket.write(pass);
+				} else {
+					Config.socket.write(user);
+				}
+			} else {
 				Config.socket.write(user);
+			}
 		}
-		else
-			Config.socket.write(user);
 	};
 
 	var show = function(t) {
@@ -147,7 +148,7 @@ Kallaikia.LoginPrompt = function(o) {
 			<div style="width: 100%; margin-top: 24px;">\
 			' + note + '\
 			<div class="left" style="margin: 0px; opacity: 0.6; padding: 0px 40px 0px 0px">\
-				<img style="width: 90px;" src="/app/images/login.png"></div>\
+				<img style="width: 90px;" src="assets/images/login.png"></div>\
 				<div class="left" style="width: 200px">\
 					<form id="havoc-login-prompt" action="havoc/login">\
 					<input name="username" class="user right" type="text" tabindex="1" autocapitalize="off" autocorrect="off" size=18 placeholder="' + (o.placeholder || '') + '">\
